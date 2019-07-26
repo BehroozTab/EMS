@@ -34,17 +34,17 @@
 	         {
               $dno = $_POST['deptno'];
               $dnam = $_POST['deptName'];
-			  $dphone = $_POST['deptPhone'];
-		      $daddr = $_POST['deptAddr'];
+	      $dphone = $_POST['deptPhone'];
+	      $daddr = $_POST['deptAddr'];
      
               $query = "SELECT * FROM departments where deptno =$dno";
-              $result = mysql_query($query);
-              $rows = mysql_num_rows($result);     
+              $result = $conn->query($query);
+              $rows = mysqli_num_rows($result);     
                   if ($rows == 0) {
 				  
                   $sql="INSERT INTO departments (deptno,deptName,deptPhone,deptAddr) 
 				                         VALUES ($dno,'$dnam','$dphone','$daddr')";
-	              mysql_query($sql);
+                  $conn->query($sql);
                     echo "<h3> The department'information was inserted. </h3>";
                   }
                   else{
