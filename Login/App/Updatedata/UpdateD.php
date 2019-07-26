@@ -44,13 +44,13 @@
 	         {
               $dno = $_POST['Searchdeptno'];     
               $query = "SELECT * FROM departments where deptno =$dno";
-              $result = mysql_query($query);
-              $rows = mysql_num_rows($result);     
+              $result = $conn->query($query);
+              $rows = mysqli_num_rows($result);     
                   if ($rows == 0) {
                                 echo "<p>There is no this Department no.</p>";
                                   }
                   else{
-					    $row = mysql_fetch_array($result);
+					    $row = mysqli_fetch_array($result);
 						$_SESSION['deptno']=$row['deptno'];	
 					  	echo '<fieldset id="DepartmentFields"> 
 						       <legend>Department Information</legend>
@@ -78,16 +78,16 @@
               echo "<p>Departmentno is empty.</p>";   
            } 
        if(isset($_POST['DeleteB'])){	
-	          $query = "delete FROM departments where deptno = ".$_SESSION['deptno'];
-              $result = mysql_query($query);
+	      $query = "delete FROM departments where deptno = ".$_SESSION['deptno'];
+              $result = $conn->query($query);
               echo "<p>department ".$_SESSION['deptno']." was deleted</p>"; 
 	   }
        if(isset($_POST['UpdateB'])){	
-	   	      $query = "update departments set deptName = '".$_POST['deptName'].
-			                             "', deptPhone = '".$_POST['deptPhone'].
-									       "', deptAddr = '".$_POST['deptAddr'].
-									    "' where deptno = ".$_SESSION['deptno'];
-              $result = mysql_query($query);
+	      $query = "update departments set deptName = '".$_POST['deptName'].
+			                 "', deptPhone = '".$_POST['deptPhone'].
+				           "', deptAddr = '".$_POST['deptAddr'].
+					"' where deptno = ".$_SESSION['deptno'];
+              $result = $conn->query($query);
               echo "<p>department ".$_SESSION['deptno']." was updated</p>"; 
 	   }	   
   ?>
