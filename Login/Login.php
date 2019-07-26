@@ -20,14 +20,14 @@
               $str2 = $_POST['password'];
      
               $query = "SELECT * FROM users where username = '".$str1."' and password = '".$str2."'";
-              $result = mysql_query($query);
-              $rows = mysql_num_rows($result);     
+              $result = $conn->query($query);
+              $rows = mysqli_num_rows($result);     
                   if ($rows == 0) 
                   {	  
                     echo "<h3> The Username not found. </h3>";
                   }
                   else{
-                      $row = mysql_fetch_array($result);
+                      $row = mysqli_fetch_array($result);
                       $_SESSION ['usertype'] = $row ['usertype'];
                       header("location: App/App.php");
                       }
